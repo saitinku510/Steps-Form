@@ -1,0 +1,55 @@
+*::before,*::after{
+    box-sizing: border-box;
+}
+
+.form-step{
+    display: none;
+}
+.form-step-active{
+    display: block;
+}
+.progressbar{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    counter-reset: step;
+    margin: 20px 0;
+}
+.progressbar::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    height: 4px;
+    width: 100%;
+    background-color: skyblue;
+
+}
+.progress-step{
+    width: 35px;
+    height: 35px;
+    background-color: skyblue;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9;
+}
+.progress-step::before{
+    counter-increment: step;
+    content: counter(step);
+}
+.progress-step::after{
+    content: attr(data-title);
+    position: absolute;
+    top: calc(100% - 0.5rem);
+    font-size: 16px;
+}
+.progress-step-active{
+    background-color: blue;
+}.progress{
+    background-color: blue;
+    width: 0%;
+}
+
+
+

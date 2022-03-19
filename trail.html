@@ -1,0 +1,573 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="form.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body{
+	font-family: 'Roboto', sans-serif;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+i {
+	margin-right: 10px;
+}
+
+/*------------------------*/
+input:focus,
+button:focus,
+.form-control:focus{
+	outline: none;
+	box-shadow: none;
+}
+.form-control:disabled, .form-control[readonly]{
+	background-color: #fff;
+}
+/*----------step-wizard------------*/
+.d-flex{
+	display: flex;
+}
+.justify-content-center{
+	justify-content: center;
+}
+.align-items-center{
+	align-items: center;
+}
+
+/*---------signup-step-------------*/
+.bg-color{
+	background-color: #333;
+}
+.signup-step-container{
+	padding: 150px 0px;
+	padding-bottom: 60px;
+}
+
+
+
+
+    .wizard .nav-tabs {
+        position: relative;
+        margin-bottom: 0;
+        border-bottom-color: transparent;
+    }
+
+    .wizard > div.wizard-inner {
+            position: relative;
+    margin-bottom: 50px;
+    text-align: center;
+    }
+
+.connecting-line {
+    height: 2px;
+    background: #e0e0e0;
+    position: absolute;
+    width: 75%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 15px;
+    z-index: 1;
+}
+
+.wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
+    color: #555555;
+    cursor: default;
+    border: 0;
+    border-bottom-color: transparent;
+}
+
+span.round-tab {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    border-radius: 50%;
+    background: #fff;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    font-size: 16px;
+    color: #0e214b;
+    font-weight: 500;
+    border: 1px solid #ddd;
+}
+span.round-tab i{
+    color:#555555;
+}
+.wizard li.active span.round-tab {
+        background: #0db02b;
+    color: #fff;
+    border-color: #0db02b;
+}
+.wizard li.active span.round-tab i{
+    color: #5bc0de;
+}
+.wizard .nav-tabs > li.active > a i{
+	color: #0db02b;
+}
+
+.wizard .nav-tabs > li {
+    width: 33.33%;
+}
+
+
+
+
+.wizard .nav-tabs > li a {
+    width: 30px;
+    height: 30px;
+    margin: 20px auto;
+    border-radius: 100%;
+    padding: 0;
+    background-color: transparent;
+    position: relative;
+    top: 0;
+}
+.wizard .nav-tabs > li a i{
+	position: absolute;
+    top: -15px;
+    font-style: normal;
+    font-weight: 400;
+    white-space: nowrap;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    font-weight: 700;
+    color: #000;
+}
+
+    .wizard .nav-tabs > li a:hover {
+        background: transparent;
+    }
+
+.wizard .tab-pane {
+    position: relative;
+    padding-top: 20px;
+}
+
+
+.wizard h3 {
+    margin-top: 0;
+}
+.prev-step,
+.next-step{
+    font-size: 13px;
+    padding: 8px 24px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 30px;
+}
+.next-step{
+	background-color: #0db02b;
+}
+
+.step-head{
+    font-size: 20px;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.term-check{
+	font-size: 14px;
+	font-weight: 400;
+}
+.custom-file {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 0;
+}
+.custom-file-input {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 40px;
+    margin: 0;
+    opacity: 0;
+}
+.custom-file-label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    height: 40px;
+    padding: .375rem .75rem;
+    font-weight: 400;
+    line-height: 2;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+.custom-file-label::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    display: block;
+    height: 38px;
+    padding: .375rem .75rem;
+    line-height: 2;
+    color: #495057;
+    content: "Browse";
+    background-color: #e9ecef;
+    border-left: inherit;
+    border-radius: 0 .25rem .25rem 0;
+}
+.footer-link{
+	margin-top: 30px;
+}
+.all-info-container{
+
+}
+.list-content{
+	margin-bottom: 10px;
+}
+.list-content a{
+	padding: 10px 15px;
+    width: 100%;
+    display: inline-block;
+    background-color: #f5f5f5;
+    position: relative;
+    color: #565656;
+    font-weight: 400;
+    border-radius: 4px;
+}
+.list-content a[aria-expanded="true"] i{
+	transform: rotate(180deg);
+}
+.list-content a i{
+	text-align: right;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    transition: 0.5s;
+}
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #fdfdfd;
+}
+.list-box{
+	padding: 10px;
+}
+.signup-logo-header .logo_area{
+	width: 200px;
+}
+.signup-logo-header .nav > li{
+	padding: 0;
+}
+.signup-logo-header .header-flex{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.list-inline li{
+    display: inline-block;
+}
+/*-----------custom-checkbox-----------*/
+/*----------Custom-Checkbox---------*/
+input[type="checkbox"]{
+    position: relative;
+    display: inline-block;
+    margin-right: 5px;
+}
+input[type="checkbox"]::before,
+input[type="checkbox"]::after {
+    position: absolute;
+    content: "";
+    display: inline-block;   
+}
+input[type="checkbox"]::before{
+    height: 16px;
+    width: 16px;
+    border: 1px solid #999;
+    left: 0px;
+    top: 0px;
+    background-color: #fff;
+    border-radius: 2px;
+}
+input[type="checkbox"]::after{
+    height: 5px;
+    width: 9px;
+    left: 4px;
+    top: 4px;
+}
+input[type="checkbox"]:checked::after{
+    content: "";
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    transform: rotate(-45deg);
+}
+input[type="checkbox"]:checked::before{
+    background-color: #18ba60;
+    border-color: #18ba60;
+}
+
+
+
+
+
+
+@media (max-width: 767px){
+	.sign-content h3{
+		font-size: 40px;
+	}
+	.wizard .nav-tabs > li a i{
+		display: none;
+	}
+	.signup-logo-header .navbar-toggle{
+		margin: 0;
+		margin-top: 8px;
+	}
+	.signup-logo-header .logo_area{
+		margin-top: 0;
+	}
+	.signup-logo-header .header-flex{
+		display: block;
+	}
+}
+
+    </style>
+</head>
+<body>
+    <div class="signup-step-container">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-8">
+                    <div class="wizard">
+                        <div class="wizard-inner">
+                            <div class="connecting-line"></div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" aria-expanded="true"><span class="round-tab">1 </span> <i>Step 1</i></a>
+                                </li>
+                                <li role="presentation" class="disabled">
+                                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" aria-expanded="false"><span class="round-tab">2</span> <i>Step 2</i></a>
+                                </li>
+                                <li role="presentation" class="disabled">
+                                    <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab"><span class="round-tab">3</span> <i>Step 3</i></a>
+                                </li>
+                            </ul>
+                        </div>
+        
+                        <form action="" class="login-box" id="step-form">
+                            <div class="tab-content" id="main_form">
+                                <div class="tab-pane active" role="tabpanel" id="step1">
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-4 col-xs-12 col-sm-12">
+                                            <h2>Step 1</h2>
+                                        </div>
+                                        <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label>I am*</label> 
+                                                <select class="form-control" name="iam" id="iam">
+                                                    <option value="">Please Select</option>
+                                                    <option value="single">Single</option>
+                                                    <option value="married with no kids"> Married with no kids</option>
+                                                    <option value="Married with kids">Married with kids</option>
+                                                    <option value="Retiring soon">Retiring soon</option>
+                                                </select>
+                                                <span class="info" id="iam-s"></span>
+                                            </div>
+                                            <button type="submit" id="step-sub" class="default-btn next-step">Continue</button>
+                                            <!-- <ul class="list-inline pull-right">
+                                                <li><button type="submit" id="step-sub" class="default-btn next-step">Continue</button></li>
+                                            </ul> -->
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                                <div class="tab-pane" role="tabpanel" id="step2">
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-4 col-xs-12 col-sm-12">
+                                            <h2>Financial Need</h2>
+                                        </div>
+                                    
+                                        <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label>My financial need*</label> 
+                                            <select class="form-control" name="country" id="need">
+                                                <option value="">Please Select</option>
+                                                <option value="Financial protection for my family">Financial protection for my family</option>
+                                                <option value="Health Insurance"> Health Insurance</option>
+                                                <option value="Invest surplus savings">Invest surplus savings</option>
+                                                <option value="Build long term wealth">Build long term wealth</option>
+                                                <option value="Childs education"> Childs education</option>
+                                                <option value="Childs marriage">Childs marriage</option>
+                                                <option value="Generate second income">Generate second income</option>
+                                                <option value="Build inheritance"> Build inheritance</option>
+                                                <option value="Build Retirement Corpus">Build Retirement Corpus</option>
+                                            </select>
+                                            <span class="info" id="need-s"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>I am looking at*</label> 
+                                            <select class="form-control" name="country" id="look">
+                                                <option value="">Please Select</option>
+                                                <option value="Secured Returns">Secured Returns</option>
+                                                <option value=" Market linked Returns">  Market linked Returns</option>
+                                            </select>
+                                            <span class="info" id="look-s"></span>
+                                        </div>
+                                        <ul class="list-inline pull-right">
+                                            <li><button type="button" class="default-btn prev-step">Back</button></li>
+                                            <li><button type="button" id="step-btn-1" class="default-btn next-step">Continue</button></li>
+                                        </ul>
+                                    </div>
+                                    
+                                   
+                                    
+                                    
+                                   
+                                   </div>
+                                    
+                                    
+                                    
+                                </div>
+                                <div class="tab-pane" role="tabpanel" id="step3">
+                                     <div class="row">
+                                        <div class="col-md-4 col-lg-4 col-xs-12 col-sm-12">
+                                            <h2>My Details</h2>
+                                        </div>
+                                        <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Occupation*</label> 
+                                                <select class="form-control" name="country" id="occupation">
+                                                    <option value="">Please Select</option>
+                                                    <option value="Salaried, Private company">Salaried, Private company</option>
+                                                    <option value="Salaried, Govt job"> Salaried, Govt job</option>
+                                                    <option value="Self Employed, Professional">Self Employed, Professional</option>
+                                                    <option value="Self Employed, ITR>10 lakh">Self Employed, ITR>10 lakh</option>
+                                                    <option value="Self Employed, ITR"> Self Employed, ITR</option>
+                                                    <option value="Student 10+2">Student 10+2</option>
+                                                    <option value="Unemployed">Unemployed</option>
+                                                </select>
+                                                <span class="info" id="occupation-s"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Annual Income*</label> 
+                                                <select class="form-control" name="country" id="annual">
+                                                    <option value="">Please Select</option>
+                                                    <option value="< 10,00,000"> < 10,00,000 </option>
+                                                    <option value=" 10,00,000 - 15,00,000">  10,00,000 - 15,00,000</option>
+                                                    <option value="15,00,000 - 20,00,000"> 15,00,000 - 20,00,000 </option>
+                                                    <option value=" > 20,00,000 ">  > 20,00,000 </option>
+                                                </select>
+                                                <span class="info" id="annual-s"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">First Name*</label>
+                                                <input name="name" class="form-control" id="sname" type="text" placeholder="Enter First Name">
+                                                <span class="info" id="sname-s"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Last Name*</label>
+                                                <input name="name" class="form-control" id="lname" type="text" placeholder="Enter Last Name">
+                                                <span class="info" id="lname-s"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>E-mail id*</label>
+                                                <input class="form-control" id="smail" name="email" placeholder="Enter your mail" type="">
+                                                <span class="info" id="smail-s"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Phone Number*</label>
+                                                <input class="form-control" name="mobile" id="smobile" placeholder="Enter Mobile Number">
+                                                <span class="info" id="smobile-s"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Date of Birth*</label>
+                                                <input name="date" class="form-control" id="sdate" placeholder="Date of birth (dd/mm/yyyy)" type="text">
+                                                <span class="info" id="sdate-s"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">City*</label>
+                                                <input name="name" class="form-control" id="scity" type="text" placeholder="Enter City Name">
+                                                <span class="info" id="scity-s"></span>
+                                            </div>
+
+                                            <ul class="list-inline pull-right">
+                                                <li><button type="button" class="default-btn prev-step">Back</button></li>
+                                                <li><button type="button" id="step-btn-2" class="default-btn next-step">Continue</button></li>
+                                            </ul>
+                                        </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // ------------step-wizard-------------
+$(document).ready(function () {
+    $('.nav-tabs > li a[title]').tooltip();
+    
+    //Wizard
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+
+        var target = $(e.target);
+    
+        if (target.parent().hasClass('disabled')) {
+            return false;
+        }
+    });
+
+    $(".next-step").click(function (e) {
+
+        var active = $('.wizard .nav-tabs li.active');
+        active.next().removeClass('disabled');
+        nextTab(active);
+
+    });
+    $(".prev-step").click(function (e) {
+
+        var active = $('.wizard .nav-tabs li.active');
+        prevTab(active);
+
+    });
+});
+
+function nextTab(elem) {
+    $(elem).next().find('a[data-toggle="tab"]').click();
+}
+function prevTab(elem) {
+    $(elem).prev().find('a[data-toggle="tab"]').click();
+}
+
+
+$('.nav-tabs').on('click', 'li', function() {
+    $('.nav-tabs li.active');
+    $(this).addClass('active');
+});
+
+
+
+    </script>
+
+    <!-- Form Validation -->
+</body>
+</html>
